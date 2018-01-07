@@ -1,0 +1,56 @@
+class ProductModel {
+	constructor(model, isCheck=false){
+  	if(model){
+    	this.keys = Object.keys(model)
+      model && Object.keys(model).forEach((props)=>(this[props]=model[props]))
+    }
+    this.isCheck = isCheck
+  }
+  
+  getModel(){
+  	if(this.keys && this.keys.length){
+    	let model = {}
+      this.keys.forEach((key)=>{
+      	model[key] = this[key]
+      })
+    	return model
+    }
+  }
+}
+
+let data = [
+	{
+		id: 1,
+  	name: '內褲'
+	},
+  {
+ 		id: 2,
+ 		name: '車子'
+	}
+]
+
+let Products = data.map((model)=>(new ProductModel(model)))
+
+console.log('Products', Products)
+ // {
+ // 	id: 1,
+ //  	name: '內褲',
+ //    isCheck:false
+ // },
+ //  {
+ // 		id: 2,
+ // 		name: '車子',
+ //    isCheck:false
+	// }
+
+console.log('Products2', Products.map((product)=>(product.getModel())))
+
+// {
+//     id: 1,
+//     name: '內褲'
+//   },
+//   {
+//     id: 2,
+//     name: '車子'
+//   }
+
